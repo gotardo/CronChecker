@@ -1,25 +1,13 @@
 <?php
 
 /**
- * Report
+ * Checker
  *
- * A simple class
- *
- * This is the long description for this class,
- * which can span as many lines as needed. It is
- * not required, whereas the short description is
- * necessary.
- *
- * It can also span multiple paragraphs if the
- * description merits that much verbiage.
+ * The checker class wraps functions to check the response of an URL
  *
  * @author Gotardo González <contacto@gotardo.es>
  * @copyright Gotardo González <contacto@gotardo.es>
  * @license MIT License http://opensource.org/licenses/MIT
- * @var: This holds the type and description of a variable or class property. The format is type element description.
- * @param: This tag shows the type and description of a function or method parameter. The format is type $element_name element description.
- * @return: The type and description of the return value of a function or method are provided in this tag. The format is type return element description.
- *
  */
 class Checker
 {
@@ -35,7 +23,7 @@ class Checker
         curl_setopt($rHandle,  CURLOPT_RETURNTRANSFER, TRUE);
 
         /** Get the HTML or whatever is linked in $sUrl. */
-        $response = curl_exec($rHandle);
+        curl_exec($rHandle);
 
         /** Check for 404 (file not found). */
         $aCurlInfo = curl_getinfo($rHandle);

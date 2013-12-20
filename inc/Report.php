@@ -3,29 +3,33 @@
 /**
  * Report
  *
- * A simple class
- *
- * This is the long description for this class,
- * which can span as many lines as needed. It is
- * not required, whereas the short description is
- * necessary.
- *
- * It can also span multiple paragraphs if the
- * description merits that much verbiage.
+ * A simple class to manage reports in the application. It will allow you to:
+ *  - Create a report
+ *  - Add registers to the report.
+ *  - Generate a string version of the report.
+ *  - Send the report via email.
  *
  * @author Gotardo González <contacto@gotardo.es>
  * @copyright Gotardo González <contacto@gotardo.es>
  * @license MIT License http://opensource.org/licenses/MIT
  * @var: This holds the type and description of a variable or class property. The format is type element description.
  * @param: This tag shows the type and description of a function or method parameter. The format is type $element_name element description.
- * @return: The type and description of the return value of a function or method are provided in this tag. The format is type return element description.
  *
  */
 class Report
 {
+    /**
+     * @var array
+     */
     protected $_aRegisters;
-    protected $_sRegisterHtmlTemplate = '<div>%http_code% - %url%</div>';
+    /**
+     * @var string The HTML template to show the registers.
+     */
+    protected $_sRegisterTemplate = '<div>%http_code% - %url%</div>';
 
+    /**
+     * Create
+     */
     public function __construct()
     {
         $this->_aRegisters = array();
@@ -33,6 +37,7 @@ class Report
 
     /**
      * Adds a register to the report.
+     *
      * @param array $aData The data to be reported.
      * @param int $iPriority The priority order in the report.
      * @return Report the $this object
@@ -66,25 +71,33 @@ class Report
         return $this;
     }
 
+    /**
+     * Sets the template that will be used in the object's string casting. It will show the register's fields added with
+     * a pattern like %field_name%.
+     * (e.g) '<div>%http_code% - %url%</div>'
+     *
+     * @param $sTemplate string The patter for the object's string casting.
+     * @return Report $this
+     */
+    public function setRegisterTemplate($sTemplate)
+    {
+        $this->_sRegisterTemplate = $sTemplate;
+        return $this;
+    }
 
     /**
-     * Convert the object to string
-     * @return Return an HTML version of the report.
+     * Convert the object to string by using the html template.
+     * @return string an HTML version of the report.
      */
     public function __toString()
     {
         $sReport = '';
         foreach ($this->_aRegisters as $aRegister)
         {
-            $sRegister = $this->_sRegisterHtmlTemplate;
+            $sRegister = $this->_sRegisterTemplate;
             foreach(array_keys ($aRegister['_data']) as $sKey)
-            {
                 if (!is_array($aRegister['_data'][$sKey]))
-                {
                     $sRegister = str_replace ('%' . $sKey . '%', $aRegister['_data'][$sKey], $sRegister);
-                }
-            }
-
             $sReport .= $sRegister;
         }
 

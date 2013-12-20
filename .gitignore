@@ -3,7 +3,7 @@ logs
 
 # Standard Git Ignore File
 
-# General igonre
+# General ignore
 
 .htaccess
 .htpasswd.txt
@@ -24,7 +24,7 @@ protected/config/main.php
 
 nbproject
 
-# For PHPStorm Project foder
+# For PHPStorm Project folder
 
 .idea
 

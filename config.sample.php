@@ -34,6 +34,7 @@ $aConfig = array(
     /** A list with the admin emails to notify. You can keep this list empty */
     'ADMINS'=> array(
         'your.email@sample.com',
+        'other.email@sample.com',
         ),
 
     /** Path for the log files. Comment this line to disable logs */
