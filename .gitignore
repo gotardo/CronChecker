@@ -1,3 +1,5 @@
+config.php
+logs
 
 # Standard Git Ignore File
 
@@ -21,6 +23,10 @@ protected/config/main.php
 # For NetBeans Project folder
 
 nbproject
+
+# For PHPStorm Project foder
+
+.idea
 
 # For WordPress
 
